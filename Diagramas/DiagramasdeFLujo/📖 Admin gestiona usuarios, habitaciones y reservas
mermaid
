@@ -1,0 +1,21 @@
+flowchart TD
+    StartAdmin((Inicio))
+    LoginAdmin[/Iniciar sesión/]
+    DashboardAdmin[/Panel de administrador/]
+    GestionUsuarios[/Gestionar usuarios crear/desactivar recepcionistas/]
+    GestionHabitaciones[/CRUD habitaciones crear/editar/eliminar/]
+    VerReservasAdmin[/Ver todas las reservas/]
+    GenerarReportes[/Generar reportes de ocupación/]
+    EndAdmin((Fin))
+
+    StartAdmin --> LoginAdmin
+    LoginAdmin --> DashboardAdmin
+    DashboardAdmin --> GestionUsuarios
+    DashboardAdmin --> GestionHabitaciones
+    DashboardAdmin --> VerReservasAdmin
+    DashboardAdmin --> GenerarReportes
+    GestionUsuarios --> EndAdmin
+    GestionHabitaciones --> EndAdmin
+    VerReservasAdmin --> EndAdmin
+    GenerarReportes --> EndAdmin
+

@@ -1,0 +1,23 @@
+flowchart TD
+    StartRecep((Inicio))
+    LoginRecep[/Iniciar sesión/]
+    DashboardRecep[/Panel de recepcionista/]
+    VerReservasRecep[/Ver todas las reservas (activas/pasadas)/]
+    CrearReservaRecep[/Crear reserva a nombre del cliente/]
+    ModificarReservaRecep[/Modificar/cancelar reserva/]
+    CheckIn[/Registrar check-in de cliente/]
+    CheckOut[/Registrar check-out de cliente/]
+    EndRecep((Fin))
+
+    StartRecep --> LoginRecep
+    LoginRecep --> DashboardRecep
+    DashboardRecep --> VerReservasRecep
+    VerReservasRecep --> CrearReservaRecep
+    VerReservasRecep --> ModificarReservaRecep
+    DashboardRecep --> CheckIn
+    DashboardRecep --> CheckOut
+    CrearReservaRecep --> EndRecep
+    ModificarReservaRecep --> EndRecep
+    CheckIn --> EndRecep
+    CheckOut --> EndRecep
+

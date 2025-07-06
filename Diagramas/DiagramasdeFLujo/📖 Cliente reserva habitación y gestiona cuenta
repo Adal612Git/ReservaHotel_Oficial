@@ -1,0 +1,26 @@
+flowchart TD
+    StartCliente((Inicio))
+    RegistroCliente[/Registrarse/]
+    LoginCliente[/Iniciar sesión/]
+    HomeCliente[/Pagina principal - ver habitaciones/]
+    FiltroHabitaciones[/Filtrar habitaciones por fecha, precio, personas/]
+    SeleccionarHabitacion[/Seleccionar habitación/]
+    ReservarHabitacion[/Reservar habitación/]
+    ConfirmacionCorreo[/Recibir correo de confirmación/]
+    VerHistorial[/Ver historial de reservas/]
+    CancelarReserva[/Cancelar/modificar reserva/]
+    EndCliente((Fin))
+
+    StartCliente --> RegistroCliente
+    RegistroCliente --> LoginCliente
+    StartCliente --> LoginCliente
+    LoginCliente --> HomeCliente
+    HomeCliente --> FiltroHabitaciones
+    FiltroHabitaciones --> SeleccionarHabitacion
+    SeleccionarHabitacion --> ReservarHabitacion
+    ReservarHabitacion --> ConfirmacionCorreo
+    ReservarHabitacion --> VerHistorial
+    VerHistorial --> CancelarReserva
+    CancelarReserva --> EndCliente
+    ConfirmacionCorreo --> EndCliente
+
