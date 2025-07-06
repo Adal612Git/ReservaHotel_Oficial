@@ -1,0 +1,37 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [ "develop" ] # Solo corre en la rama develop
+  pull_request:
+    branches: [ "develop" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Clonar el repo
+    - uses: actions/checkout@v3
+
+    # 2. Instalar Node.js v20
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    # 3. Instalar dependencias
+    - name: Install dependencies
+      run: npm install
+      working-directory: backend
+
+    # 4. Lint
+    - name: Run Linter
+      run: npm run lint
+      working-directory: backend
+
+    # 5. Tests
+    - name: Run Tests
+      run: npm run test
+      working-directory: backend
+
