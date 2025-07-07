@@ -1,7 +1,16 @@
+<<<<<<< HEAD
+=======
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+>>>>>>> origin/master
 generator client {
   provider = "prisma-client-js"
 }
 
+<<<<<<< HEAD
 datasource db {
   provider          = "postgresql"
   url               = env("DATABASE_URL")
@@ -42,6 +51,14 @@ enum Rol {
   ADMIN
   RECEPCIONISTA
   CLIENTE
+=======
+model Habitacion {
+  id       Int              @id @default(autoincrement())
+  numero   Int              @unique
+  estado   EstadoHabitacion
+  precio   Float
+  reservas Reserva[]
+>>>>>>> origin/master
 }
 
 enum EstadoHabitacion {
@@ -50,9 +67,18 @@ enum EstadoHabitacion {
   MANTENIMIENTO
 }
 
+<<<<<<< HEAD
 enum EstadoReserva {
   ACTIVA
   CANCELADA
   COMPLETADA
 }
 
+=======
+model Reserva {
+  id          Int   @id @default(autoincrement())
+  habitacion  Habitacion @relation(fields: [habitacionId], references: [id])
+  habitacionId Int
+  // other fields omitted for simplicity
+}
+>>>>>>> origin/master

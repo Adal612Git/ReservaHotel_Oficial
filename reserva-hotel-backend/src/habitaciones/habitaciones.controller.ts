@@ -8,12 +8,12 @@ export class HabitacionesController {
   constructor(private readonly habitacionesService: HabitacionesService) {}
 
   @Get()
-  findAll(): Habitacion[] {
+  findAll(): Promise<Habitacion[]> {
     return this.habitacionesService.findAll();
   }
 
   @Post()
-  create(@Body() dto: CreateHabitacionDto): Habitacion {
+  create(@Body() dto: CreateHabitacionDto): Promise<Habitacion> {
     return this.habitacionesService.create(dto);
   }
 }
