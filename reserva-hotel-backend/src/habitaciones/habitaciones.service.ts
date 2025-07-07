@@ -1,29 +1,34 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
+import { PrismaService } from '../prisma/prisma.service';
 import { CreateHabitacionDto } from './dto/create-habitacion.dto';
-import { EstadoHabitacion } from './estado-habitacion.enum';
 import { Habitacion } from './habitacion.entity';
 
 @Injectable()
 export class HabitacionesService {
-  private habitaciones: Habitacion[] = [];
-  private nextId = 1;
+  constructor(private readonly prisma: PrismaService) {}
 
-  findAll(): Habitacion[] {
-    return this.habitaciones;
+  findAll(): Promise<Habitacion[]> {
+    return this.prisma.habitacion.findMany();
   }
 
-  create(dto: CreateHabitacionDto): Habitacion {
-    if (this.habitaciones.some((h) => h.numero === dto.numero)) {
-      throw new BadRequestException('El numero de habitacion ya existe');
+  async create(dto: CreateHabitacionDto): Promise<Habitacion> {
+    try {
+      return await this.prisma.habitacion.create({
+        data: {
+          numero: dto.numero,
+          estado: dto.estado,
+          precio: dto.precio,
+        },
+      });
+    } catch (error) {
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === 'P2002'
+      ) {
+        throw new BadRequestException('El numero de habitacion ya existe');
+      }
+      throw error;
     }
-
-    const habitacion: Habitacion = {
-      id: this.nextId++,
-      numero: dto.numero,
-      estado: dto.estado,
-      precio: dto.precio,
-    };
-    this.habitaciones.push(habitacion);
-    return habitacion;
   }
 }
