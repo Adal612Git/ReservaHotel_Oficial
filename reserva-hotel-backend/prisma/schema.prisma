@@ -1,0 +1,29 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Habitacion {
+  id       Int              @id @default(autoincrement())
+  numero   Int              @unique
+  estado   EstadoHabitacion
+  precio   Float
+  reservas Reserva[]
+}
+
+enum EstadoHabitacion {
+  LIBRE
+  OCUPADA
+  MANTENIMIENTO
+}
+
+model Reserva {
+  id          Int   @id @default(autoincrement())
+  habitacion  Habitacion @relation(fields: [habitacionId], references: [id])
+  habitacionId Int
+  // other fields omitted for simplicity
+}
