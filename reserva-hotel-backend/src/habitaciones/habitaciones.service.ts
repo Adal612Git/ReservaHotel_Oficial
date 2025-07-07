@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateHabitacionDto } from './dto/create-habitacion.dto';
-import { Habitacion } from './habitacion.entity';
+import { EstadoHabitacion, Habitacion } from '@prisma/client';
 
 @Injectable()
 export class HabitacionesService {

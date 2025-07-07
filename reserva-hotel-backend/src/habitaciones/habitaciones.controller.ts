@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { CreateHabitacionDto } from './dto/create-habitacion.dto';
-import { Habitacion } from './habitacion.entity';
+import { EstadoHabitacion, Habitacion } from '@prisma/client';
 import { HabitacionesService } from './habitaciones.service';
 
 @Controller('habitaciones')
