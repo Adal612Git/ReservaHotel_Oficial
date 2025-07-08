@@ -6,6 +6,11 @@ services:
       - "3000:3000"
     volumes:
       - ./reserva-hotel-backend/.env:/app/.env
+    environment:
+      JWT_ACCESS_SECRET: changemeaccess
+      JWT_REFRESH_SECRET: changemerefresh
+      JWT_ACCESS_EXPIRES: 15m
+      JWT_REFRESH_EXPIRES: 7d
     depends_on:
       - postgres
   postgres:
