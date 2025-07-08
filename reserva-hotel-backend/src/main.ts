@@ -19,6 +19,13 @@ async function bootstrap() {
       max: 100,
     }),
   );
+  app.use(
+    '/auth/login',
+    rateLimit({
+      windowMs: 10 * 60 * 1000,
+      max: 5,
+    }),
+  );
   app.use((req, res, next) => {
     const allowed = ['GET', 'POST', 'PUT', 'DELETE'];
     if (!allowed.includes(req.method)) {

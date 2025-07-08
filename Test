@@ -1,0 +1,13 @@
+Para ejecutar las pruebas del módulo de autenticación y el resto de la API:
+
+1. Instala las dependencias en `reserva-hotel-backend`:
+   ```bash
+   cd reserva-hotel-backend
+   HUSKY=0 npm ci
+   ```
+2. Ejecuta la suite de pruebas:
+   ```bash
+   npm test
+   ```
+
+Estas pruebas incluyen los ejemplos básicos y pueden ampliarse para cubrir los flujos de registro, login, roles y 2FA.

@@ -4,9 +4,15 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { HabitacionesModule } from './habitaciones/habitaciones.module';
 import { PrismaModule } from './prisma/prisma.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true }), PrismaModule, HabitacionesModule],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    PrismaModule,
+    HabitacionesModule,
+    AuthModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

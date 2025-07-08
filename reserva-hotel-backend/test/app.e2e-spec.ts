@@ -22,4 +22,32 @@ describe('AppController (e2e)', () => {
       .expect(200)
       .expect('Hello World!');
   });
+
+  it('/auth/register (POST)', async () => {
+    const res = await request(app.getHttpServer())
+      .post('/auth/register')
+      .send({
+        nombre: 'Test',
+        email: 'test@example.com',
+        password: 'StrongP@ss1',
+        rol: 'CLIENTE',
+      });
+    expect(res.status).toBe(201);
+  });
+
+  it('/auth/login (POST)', async () => {
+    await request(app.getHttpServer())
+      .post('/auth/register')
+      .send({
+        nombre: 'Login',
+        email: 'login@example.com',
+        password: 'StrongP@ss1',
+        rol: 'CLIENTE',
+      });
+    const res = await request(app.getHttpServer())
+      .post('/auth/login')
+      .send({ email: 'login@example.com', password: 'StrongP@ss1' });
+    expect(res.status).toBe(201);
+    expect(res.body.accessToken).toBeDefined();
+  });
 });

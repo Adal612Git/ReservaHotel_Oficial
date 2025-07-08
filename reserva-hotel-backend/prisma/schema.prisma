@@ -12,10 +12,12 @@
    id         Int      @id @default(autoincrement())
    nombre     String
    email      String   @unique
-   contraseña String
-   rol        Rol
-   reservas   Reserva[]
- }
+  contraseña String
+  rol        Rol
+  refreshToken String?
+  twoFactorSecret String?
+  reservas   Reserva[]
+}
 
  model Habitacion {
    id        Int        @id @default(autoincrement())
