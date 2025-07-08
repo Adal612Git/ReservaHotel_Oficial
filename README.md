@@ -26,4 +26,3 @@ El diseño en Figma puede consultarse en el siguiente enlace público:
 [ReservaHotel_UI](https://www.figma.com/file/PLACEHOLDER/ReservaHotel_UI)
 
 El archivo `.fig` exportado se encuentra en `design/ReservaHotel_UI.fig`.
-
