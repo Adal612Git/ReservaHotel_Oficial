@@ -27,16 +27,18 @@
    reservas  Reserva[]
  }
 
- model Reserva {
-   id           Int        @id @default(autoincrement())
-   cliente      Usuario    @relation(fields: [clienteId], references: [id])
-   clienteId    Int
-   habitacion   Habitacion @relation(fields: [habitacionId], references: [id])
-   habitacionId Int
-   fechaInicio  DateTime
-   fechaFin     DateTime
-   estado       EstadoReserva
- }
+model Reserva {
+  id           Int        @id @default(autoincrement())
+  cliente      Usuario    @relation(fields: [clienteId], references: [id])
+  clienteId    Int
+  habitacion   Habitacion @relation(fields: [habitacionId], references: [id])
+  habitacionId Int
+  fechaInicio  DateTime
+  fechaFin     DateTime
+  costo        Float
+  comentario   String?
+  estado       EstadoReserva
+}
 
  enum Rol {
    ADMIN
@@ -50,8 +52,8 @@
    MANTENIMIENTO
  }
 
- enum EstadoReserva {
-   ACTIVA
-   CANCELADA
-   COMPLETADA
- }
+enum EstadoReserva {
+  PENDIENTE
+  CONFIRMADA
+  CANCELADA
+}

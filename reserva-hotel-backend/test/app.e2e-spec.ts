@@ -50,4 +50,47 @@ describe('AppController (e2e)', () => {
     expect(res.status).toBe(201);
     expect(res.body.accessToken).toBeDefined();
   });
+
+  it('/reservas (POST)', async () => {
+    await request(app.getHttpServer())
+      .post('/auth/register')
+      .send({
+        nombre: 'Admin',
+        email: 'admin@example.com',
+        password: 'StrongP@ss1',
+        rol: 'ADMIN',
+      });
+    const adminLogin = await request(app.getHttpServer())
+      .post('/auth/login')
+      .send({ email: 'admin@example.com', password: 'StrongP@ss1' });
+    const adminToken = adminLogin.body.accessToken;
+
+    const habitacion = await request(app.getHttpServer())
+      .post('/habitaciones')
+      .set('Authorization', `Bearer ${adminToken}`)
+      .send({ numero: 1, estado: 'LIBRE', precio: 100 });
+
+    await request(app.getHttpServer())
+      .post('/auth/register')
+      .send({
+        nombre: 'Reserva',
+        email: 'reserva@example.com',
+        password: 'StrongP@ss1',
+        rol: 'CLIENTE',
+      });
+    const login = await request(app.getHttpServer())
+      .post('/auth/login')
+      .send({ email: 'reserva@example.com', password: 'StrongP@ss1' });
+    const token = login.body.accessToken;
+
+    const res = await request(app.getHttpServer())
+      .post('/reservas')
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        habitacionId: habitacion.body.id,
+        fechaInicio: new Date(Date.now() + 86400000).toISOString(),
+        fechaFin: new Date(Date.now() + 172800000).toISOString(),
+      });
+    expect(res.status).toBe(201);
+  });
 });
