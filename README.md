@@ -27,3 +27,6 @@ El diseño en Figma puede consultarse en el siguiente enlace público:
 [ReservaHotel_UI](https://www.figma.com/file/PLACEHOLDER/ReservaHotel_UI)
 
 El archivo `.fig` exportado se encuentra en `design/ReservaHotel_UI.fig`.
+
+## ADRs
+- [ADR-0001: Stack Desktop Offline](docs/adr/0001-stack-desktop-nativephp.md)
